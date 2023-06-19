@@ -36,7 +36,7 @@ namespace Tensorflow.Keras.Layers
         protected string padding => args.Padding;
         protected string data_format => args.DataFormat;
         protected Shape dilation_rate => args.DilationRate;
-        protected Activation activation => args.Activation;
+        protected IActivation activation => args.Activation;
         protected bool use_bias => args.UseBias;
         protected IInitializer kernel_initializer => args.KernelInitializer;
         protected IRegularizer kernel_regularizer => args.KernelRegularizer;

@@ -19,7 +19,7 @@ namespace Tensorflow.Keras.ArgsDefinition
         /// Activation function to use.
         /// </summary>
         [JsonProperty("activation")]
-        public Activation Activation { get; set; }
+        public IActivation Activation { get; set; }
 
         /// <summary>
         /// Whether the layer uses a bias vector.

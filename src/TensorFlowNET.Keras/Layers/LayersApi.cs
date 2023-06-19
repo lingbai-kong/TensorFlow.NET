@@ -141,7 +141,7 @@ namespace Tensorflow.Keras.Layers
             string data_format = null,
             Shape dilation_rate = null,
             int groups = 1,
-            Activation activation = null,
+            IActivation activation = null,
             bool use_bias = true,
             IInitializer kernel_initializer = null,
             IInitializer bias_initializer = null,
@@ -274,7 +274,7 @@ namespace Tensorflow.Keras.Layers
         /// <param name="input_shape">N-D tensor with shape: (batch_size, ..., input_dim). The most common situation would be a 2D input with shape (batch_size, input_dim).</param>
         /// <returns>N-D tensor with shape: (batch_size, ..., units). For instance, for a 2D input with shape (batch_size, input_dim), the output would have shape (batch_size, units).</returns>
         public ILayer Dense(int units,
-            Activation activation = null,
+            IActivation activation = null,
             IInitializer kernel_initializer = null,
             bool use_bias = true,
             IInitializer bias_initializer = null,
@@ -341,7 +341,7 @@ namespace Tensorflow.Keras.Layers
         /// <returns></returns>
         public Tensor dense(Tensor inputs,
             int units,
-            Activation activation = null,
+            IActivation activation = null,
             bool use_bias = true,
             IInitializer kernel_initializer = null,
             IInitializer bias_initializer = null,
@@ -370,7 +370,7 @@ namespace Tensorflow.Keras.Layers
         public ILayer EinsumDense(string equation,
                 Shape output_shape,
                 string bias_axes,
-                Activation activation = null,
+                IActivation activation = null,
                 IInitializer kernel_initializer= null,
                 IInitializer bias_initializer= null,
                 IRegularizer kernel_regularizer= null,
@@ -737,8 +737,8 @@ namespace Tensorflow.Keras.Layers
         /// </param>
         /// <returns></returns>
         public ILayer LSTM(int units,
-            Activation activation = null,
-            Activation recurrent_activation = null,
+            IActivation activation = null,
+            IActivation recurrent_activation = null,
             bool use_bias = true,
             IInitializer kernel_initializer = null,
             IInitializer recurrent_initializer = null,

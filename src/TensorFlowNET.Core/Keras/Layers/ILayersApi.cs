@@ -60,7 +60,7 @@ namespace Tensorflow.Keras.Layers
             string data_format = null,
             Shape dilation_rate = null,
             int groups = 1,
-            Activation activation = null,
+            IActivation activation = null,
             bool use_bias = true,
             IInitializer kernel_initializer = null,
             IInitializer bias_initializer = null,
@@ -99,7 +99,7 @@ namespace Tensorflow.Keras.Layers
             string activation = null,
             Shape input_shape = null);
         public ILayer Dense(int units,
-            Activation activation = null,
+            IActivation activation = null,
             IInitializer kernel_initializer = null,
             bool use_bias = true,
             IInitializer bias_initializer = null,
@@ -117,7 +117,7 @@ namespace Tensorflow.Keras.Layers
         public ILayer EinsumDense(string equation,
                 Shape output_shape,
                 string bias_axes,
-                Activation activation = null,
+                IActivation activation = null,
                 IInitializer kernel_initializer = null,
                 IInitializer bias_initializer = null,
                 IRegularizer kernel_regularizer = null,
@@ -160,8 +160,8 @@ namespace Tensorflow.Keras.Layers
         public ILayer LeakyReLU(float alpha = 0.3f);
 
         public ILayer LSTM(int units,
-            Activation activation = null,
-            Activation recurrent_activation = null,
+            IActivation activation = null,
+            IActivation recurrent_activation = null,
             bool use_bias = true,
             IInitializer kernel_initializer = null,
             IInitializer recurrent_initializer = null,

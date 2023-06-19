@@ -28,8 +28,8 @@ namespace Tensorflow.Keras.ArgsDefinition.Rnn
         public Dictionary<string, object> Kwargs { get; set; } = null;
 
         public int Units { get; set; }
-        public Activation Activation { get; set; }
-        public Activation RecurrentActivation { get; set; }
+        public IActivation Activation { get; set; }
+        public IActivation RecurrentActivation { get; set; }
         public bool UseBias { get; set; } = true;
         public IInitializer KernelInitializer { get; set; }
         public IInitializer RecurrentInitializer { get; set; }

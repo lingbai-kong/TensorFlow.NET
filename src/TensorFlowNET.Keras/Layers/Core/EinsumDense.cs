@@ -82,7 +82,7 @@ namespace Tensorflow.Keras.Layers
 
         string equation;
 
-        Activation activation;
+        IActivation activation;
         
         IVariableV1 bias;
 

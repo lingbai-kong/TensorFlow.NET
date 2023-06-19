@@ -6,39 +6,31 @@ using Tensorflow.Keras.Saving.Common;
 namespace Tensorflow.Keras
 {
     [JsonConverter(typeof(CustomizedActivationJsonConverter))]
-    public class Activation
+    public interface IActivation
     {
-        public string Name { get; set; }
+        string Name { get; set; }
         /// <summary>
         /// The parameters are `features` and `name`.
         /// </summary>
-        public Func<Tensor, string, Tensor> ActivationFunction { get; set; }
+        Func<Tensor, string, Tensor> ActivationFunction { get; set; }
 
-        public Tensor Apply(Tensor input, string name = null) => ActivationFunction(input, name);
-
-        public static implicit operator Activation(Func<Tensor, string, Tensor> func)
-        {
-            return new Activation()
-            {
-                Name = func.GetMethodInfo().Name,
-                ActivationFunction = func
-            };
-        }
+        Tensor Apply(Tensor input, string name = null);
     }
 
     public interface IActivationsApi
     {
-        Activation GetActivationFromName(string name);
-        Activation Linear { get; }
+        IActivation GetActivationFromName(string name);
+        
+        IActivation Linear { get; }
 
-        Activation Relu { get; }
+        IActivation Relu { get; }
 
-        Activation Sigmoid { get; }
+        IActivation Sigmoid { get; }
 
-        Activation Softmax { get; }
+        IActivation Softmax { get; }
 
-        Activation Tanh { get; }
+        IActivation Tanh { get; }
 
-        Activation Mish { get; }
+        IActivation Mish { get; }
     }
 }

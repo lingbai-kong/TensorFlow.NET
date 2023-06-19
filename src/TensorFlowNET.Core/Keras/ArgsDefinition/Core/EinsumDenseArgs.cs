@@ -36,7 +36,7 @@ namespace Tensorflow.Keras.ArgsDefinition.Core
         /// Activation function to use.
         /// </summary>
         [JsonProperty("activation")]
-        public Activation Activation { get; set; }
+        public IActivation Activation { get; set; }
 
         /// <summary>
         /// Initializer for the `kernel` weights matrix.

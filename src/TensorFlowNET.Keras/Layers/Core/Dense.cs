@@ -33,7 +33,7 @@ namespace Tensorflow.Keras.Layers
         DenseArgs args;
         IVariableV1 kernel;
         IVariableV1 bias;
-        Activation activation => args.Activation;
+        IActivation activation => args.Activation;
 
         public Dense(DenseArgs args) :
             base(args)

@@ -1,12 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using Tensorflow.Operations.Activation;
 using static Tensorflow.Binding;
 
 namespace Tensorflow.Keras
 {
-    public class Activations: IActivationsApi
+    public class Activation : IActivation
+    {
+        public string Name { get; set; }
+        /// <summary>
+        /// The parameters are `features` and `name`.
+        /// </summary>
+        public Func<Tensor, string, Tensor> ActivationFunction { get; set; }
+
+        public Tensor Apply(Tensor input, string name = null) => ActivationFunction(input, name);
+
+        public static implicit operator Activation(Func<Tensor, string, Tensor> func)
+        {
+            return new Activation()
+            {
+                Name = func.GetMethodInfo().Name,
+                ActivationFunction = func
+            };
+        }
+
+        public static implicit operator Activation(string name)
+        {
+            IActivation activation = keras.activations.GetActivationFromName(name);
+            return new Activation()
+            {
+                Name = activation.Name,
+                ActivationFunction = activation.ActivationFunction
+            }; ;
+        }
+    }
+    public class Activations : IActivationsApi
     {
         private static Dictionary<string, Activation> _nameActivationMap;
 
@@ -63,23 +93,23 @@ namespace Tensorflow.Keras
             RegisterActivation(_mish);
         }
 
-        public Activation Linear => _linear;
+        public IActivation Linear => _linear;
 
-        public Activation Relu => _relu;
+        public IActivation Relu => _relu;
 
-        public Activation Sigmoid => _sigmoid;
+        public IActivation Sigmoid => _sigmoid;
 
-        public Activation Softmax => _softmax;
+        public IActivation Softmax => _softmax;
 
-        public Activation Tanh => _tanh;
+        public IActivation Tanh => _tanh;
 
-        public Activation Mish => _mish;
+        public IActivation Mish => _mish;
 
-        public Activation GetActivationFromName(string name)
+        public IActivation GetActivationFromName(string name)
         {
             if (name == null)
             {
-                return _linear;
+                return Linear;
             }
             if (!_nameActivationMap.TryGetValue(name, out var res))
             {

@@ -12,7 +12,7 @@ namespace Tensorflow.Keras.Saving.Common
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Activation);
+            return objectType == typeof(IActivation);
         }
 
         public override bool CanRead => true;
@@ -26,13 +26,13 @@ namespace Tensorflow.Keras.Saving.Common
                 var token = JToken.FromObject("");
                 token.WriteTo(writer);
             }
-            else if (value is not Activation)
+            else if (value is not IActivation)
             {
                 throw new TypeError($"Unable to use `CustomizedActivationJsonConverter` to serialize the type {value.GetType()}.");
             }
             else
             {
-                var token = JToken.FromObject(((Activation)value).Name);
+                var token = JToken.FromObject(((IActivation)value).Name);
                 token.WriteTo(writer);
             }
         }

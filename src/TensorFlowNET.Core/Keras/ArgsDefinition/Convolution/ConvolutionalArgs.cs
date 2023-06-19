@@ -27,7 +27,7 @@ namespace Tensorflow.Keras.ArgsDefinition
         [JsonProperty("groups")]
         public int Groups { get; set; }
         [JsonProperty("activation")]
-        public Activation Activation { get; set; }
+        public IActivation Activation { get; set; }
         [JsonProperty("use_bias")]
         public bool UseBias { get; set; }
         [JsonProperty("kernel_initializer")]
